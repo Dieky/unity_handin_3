@@ -25,7 +25,6 @@ public class RagdollHandler : MonoBehaviour
         if (v == true)
         {
             _canvas.enabled = false;
-            Debug.Log(_canvas.enabled);
             // disable animator
             GetComponentInChildren<Animator>().enabled = false;
         }
