@@ -7,13 +7,13 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
 
     public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
+    private float countdown = 0f;
 
     private int waveIndex = 0;
-    void Update ()
+    void Update()
     {
 
-        if(countdown <= 0f)
+        if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
@@ -28,13 +28,13 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < waveIndex; i++)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);            
+            yield return new WaitForSeconds(0.5f);
         }
         waveIndex++;
-    }    
+    }
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab,spawnPoint.position,spawnPoint.rotation);
+        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }

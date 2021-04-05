@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-        if(Vector3.Distance(transform.position,target.position) <= 0.2f)
+        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
             GetNextWaypoint();
         }
@@ -25,13 +25,16 @@ public class Enemy : MonoBehaviour
 
     void GetNextWaypoint()
     {
-        if(waypointIndex >= Waypoints.waypoints.Length - 1)
+        if (waypointIndex >= Waypoints.waypoints.Length - 1)
         {
             Destroy(gameObject);
             return;
         }
         waypointIndex++;
         target = Waypoints.waypoints[waypointIndex];
+        Vector3 relativePos = target.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = rotation;
     }
 
 }
