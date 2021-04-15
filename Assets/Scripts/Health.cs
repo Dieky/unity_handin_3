@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class Health : MonoBehaviour
 {
 
-    private int currentHealth;
-    [SerializeField] private int maxhealth = 100;
+    private float currentHealth;
+    [SerializeField] private float maxhealth = 100;
 
     private bool isDead = false;
 
@@ -32,6 +32,11 @@ public class Health : MonoBehaviour
         OnDeath();
     }
 
+    public bool isTargetDead()
+    {
+        return isDead;
+    }
+
     private void OnDeath()
     {
         isDead = true;
@@ -39,11 +44,11 @@ public class Health : MonoBehaviour
         GetComponent<Enemy>().enabled = false;
         ragdoll.GoRagdoll(true);
         Destroy(healthbar);
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 2f);
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;

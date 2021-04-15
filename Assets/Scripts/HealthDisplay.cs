@@ -11,10 +11,10 @@ public class HealthDisplay : MonoBehaviour
     [SerializeField] private bool useHSVColor = false;
 
 
-    public void updateHealthBar(int health, int maxHealth)
+    public void updateHealthBar(float health, float maxHealth)
     {
         healthText.text = health.ToString() + "%";
-        healthFill.fillAmount = (float)health / maxHealth;
+        healthFill.fillAmount = health / maxHealth;
 
         if (useHSVColor)
         {
