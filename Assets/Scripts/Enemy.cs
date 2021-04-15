@@ -3,6 +3,7 @@
 public class Enemy : MonoBehaviour
 {
     public float speed = 10f;
+    public float health = 50f;
 
     private Transform target;
     private int waypointIndex = 0;
@@ -14,6 +15,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if(health < 0)
+        {
+            Destroy(gameObject);
+        }
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -32,6 +37,11 @@ public class Enemy : MonoBehaviour
         }
         waypointIndex++;
         target = Waypoints.waypoints[waypointIndex];
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
     }
 
 }
